@@ -1,0 +1,21 @@
+# return DNS for the cluster, the value is for the host
+# az aks show --resource-group $rg --name $aks --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tripsinsights-poi
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: azureDns
+    http:
+      paths:
+      - path: /api/poi
+        pathType: Prefix
+        backend:
+          service: 
+            name: tripsinsights-poi
+            port: 
+              number: 80

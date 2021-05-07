@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tripsinsights-user-java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tripsinsights-user-java
+  template:
+    metadata:
+      labels:
+        app: tripsinsights-user-java
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: tripsinsights-user-java
+        # image: openhacker3acr.azurecr.io/user-java:1.0
+        image: acrName
+        env:
+        - name: SQL_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: db-config
+              key: SQL_SERVER
+        - name: SQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-config
+              key: SQL_USER
+        - name: SQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-config
+              key: SQL_PASSWORD
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80

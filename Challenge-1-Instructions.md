@@ -11,7 +11,7 @@ You’ve been tasked with improving the local development experience for new dev
 
 Some of the work has been done for you, but it was during a time when teams were split between operations and development, leaving the code split between multiple codebases. The new CTO believes teams should be a mix of both Ops and Dev and has formed the team you are in now (say hi to your fellow teammates at your table :-)).
 
-![compay](./img/desiredArchChallange.jpg)
+![challenge 1](./img/desiredArchChallange.jpg)
 
 ### Building and Testing
 
