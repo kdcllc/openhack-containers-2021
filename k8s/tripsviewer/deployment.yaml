@@ -20,9 +20,9 @@ spec:
         image: acrName
         env:
         - name: USERPROFILE_API_ENDPOINT
-          value: "http://tripsinsights-userprofile"
+          value: "http://tripsinsights-userprofile.api"
         - name: TRIPS_API_ENDPOINT
-          value: "http://tripsinsights-trips"
+          value: "http://tripsinsights-trips.api"
         - name: SQL_SERVER
           valueFrom:
             secretKeyRef:

@@ -26,7 +26,7 @@ Focus on making sure your containers are all up and can communicate and reach th
 
 ## Desired Architecture
 
-![challenge 2](./img/desiredArchChallange.jpg)
+![challenge 2](./img/desiredArchChallange2.jpg)
 
 Services will all run in the kubernetes cluster with the TripViewer application making calls to the APIs to get data. Data is stored on an Azure SQL Server which is accessed by the APIs.
 
