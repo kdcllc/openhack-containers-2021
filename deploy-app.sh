@@ -6,23 +6,25 @@
 # kubectl config get-contexts
 # kubectl config set-context --current --namespace=[?]
 
-export rg=openhacklab3-rg 
-export acr=openhacklab3acr
-export aks=openhacklab3aks
+export rg=openhacklab4-rg 
+export acr=openhacklab4acr
+export aks=openhacklab4aks
+
+# login to acr for deployment of images
 az acr login --name $acr
 
-
+# get the name of the registry to be used in the replacemnt of the yaml files
 export REGISTRY=$(az acr show --name $acr --query loginServer -o tsv)
 
+# build and push app images
 docker-compose -f "./.azdevops/docker-compose.yaml" up -d --build 
 docker-compose -f "./.azdevops/docker-compose.yaml" down    
 docker-compose -f "./.azdevops/docker-compose.yaml" push
 
 # common properties
 kubectl apply -f './k8s/common/namespaces.yaml'
-kubectl apply -f './k8s/common/db-secrets.yaml' -n web
-kubectl apply -f './k8s/common/db-secrets.yaml' -n api
 
+# get the http dsn name
 export azureDns=$(az aks show -g $rg -n $aks --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o tsv)
 dnsName="s/azureDns/tripsinsights-tripviewer.${azureDns}/g"
 
@@ -34,7 +36,7 @@ kubectl apply -f './k8s/common/db-secrets.yaml'
 image="s/acrName/${REGISTRY}\/poi:1.0/g"
 cat ./k8s/poi/deployment.yaml | sed $image | kubectl apply -n api -f -
 kubectl apply -f './k8s/poi/service.yaml' -n api
-cat ./k8s/poi/ingress.yaml | sed $dnsName | kubectl apply -n -api -f -
+cat ./k8s/poi/ingress.yaml | sed $dnsName | kubectl apply -n api -f -
 
 # trips
 image="s/acrName/${REGISTRY}\/trips:1.0/g"

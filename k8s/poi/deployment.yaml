@@ -16,24 +16,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: tripsinsights-poi
-        # image: openhacker3acr.azurecr.io/poi:1.0
         image: acrName
-        env:
-        - name: SQL_SERVER
-          valueFrom:
-            secretKeyRef:
-              name: db-config
-              key: SQL_SERVER
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: db-config
-              key: SQL_USER
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-config
-              key: SQL_PASSWORD
         resources:
           requests:
             cpu: 100m
@@ -43,3 +26,19 @@ spec:
             memory: 256Mi
         ports:
         - containerPort: 80
+        env:
+            - name: CONFIG_FILES_PATH
+              value: /mnt/secrets-store
+        volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "azure-kvname"
+            nodePublishSecretRef:
+              name: secrets-store-creds

@@ -2,10 +2,11 @@
 # Deploys all required resources
 # azure cli version 2.23
 # assign names
-export rg=openhacklab3-rg 
-export acr=openhacklab3acr
-export aks=openhacklab3aks
+export rg=openhacklab4-rg 
+export acr=openhacklab4acr
+export aks=openhacklab4aks
 export sub=OTA-PRD-332
+
 # create resource group
 az group create --name $rg --location westus
 
@@ -13,7 +14,7 @@ az group create --name $rg --location westus
 az acr create --resource-group $rg --name $acr --sku Basic --location westus
 
 # adminGroupId=$(az ad group create --display-name aks-admins --mail-nickname aks-admins --query objectId -o tsv)
-export tenantId=$(az account show --subscription OTA-PRD-332 --query tenantId --output tsv)
+export tenantId=$(az account show --subscription $sub --query tenantId --output tsv)
 export adminGroupId=$(az ad group show --group aks-admins --query objectId -o tsv)
 
 # create subnet manually

@@ -16,28 +16,12 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: tripsinsights-tripviewer
-        # image: openhacker3acr.azurecr.io/tripviewer:1.0
         image: acrName
         env:
         - name: USERPROFILE_API_ENDPOINT
           value: "http://tripsinsights-userprofile.api"
         - name: TRIPS_API_ENDPOINT
           value: "http://tripsinsights-trips.api"
-        - name: SQL_SERVER
-          valueFrom:
-            secretKeyRef:
-              name: db-config
-              key: SQL_SERVER
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: db-config
-              key: SQL_USER
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: db-config
-              key: SQL_PASSWORD
         resources:
           requests:
             cpu: 100m
