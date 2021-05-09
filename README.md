@@ -12,6 +12,29 @@ This repo houses the source code and dockerfiles for the Containers OpenHack eve
 
 The application used for this event is a heavily modified and recreated version of the original [My Driving application](https://github.com/Azure-Samples/MyDriving).
 
+## Challenges
+
+- [Challenge 1 But First, Containers](./Challenge-1-Instructions.md) - [Challenge  1 Solution](https://github.com/kdcllc/openhack-containers-2021/blob/challenge-1/Challenge-2-Solution.md) 
+
+- [Challenge 2 Getting Ready for Orchestration](./Challenge-2-Instructions.md) - [Challenge 2 Solution](https://github.com/kdcllc/openhack-containers-2021/blob/challenge-2/Challenge-2-Solution.md) 
+
+- [Challenge 3 To Orchestration and Beyond](./Challenge-3-Instructions.md) - [Challenge 3 Solution](https://github.com/kdcllc/openhack-containers-2021/blob/challenge-3/Challenge-3-Solution.md) 
+
+- [Challenge 4 Putting the Pieces Together](./Challenge-4-Instructions.md) - [Challenge 4 Solution](https://github.com/kdcllc/openhack-containers-2021/blob/challenge-4/Challenge-4-Solution.md) 
+
+- [Challenge 5 Wait, What’s Happening](./Challenge-5-Instructions.md)
+
+- [Challenge 6 Locking it Down](./Challenge-6-Instructions.md)
+
+- [Challenge 7 Mixed Emotions](./Challenge-7-Instructions.md)
+
+- [Challenge 8 Doing More with Service Mesh](./Challenge-8-Instructions.md)
+
+- [Using Ngnix Ingress Controller](./ngnix-ingress.md)
+
+![bandge](./img/openhack-containers.png)
+
+
 ## Contents
 
 | File/folder       | Description                                |
@@ -36,3 +59,4 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+ 
